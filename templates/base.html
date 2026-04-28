@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run in Memory - 5K Event{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Light background */
+            color: #000080; /* Dark blue text */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #4B0082; /* Dark purple */
+            color: white;
+            padding: 20px 0; /* Increased padding for more space */
+            text-align: center; /* Center the text */
+            width: 100%; /* Ensure it spans the full width */
+        }
+        h1 {
+            font-size: 5em; /* Increased font size */
+            margin: 0; /* Remove default margin */
+        }
+        .event-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin: 20px 0;
+            color: #DA70D6; /* Light purple */
+        }
+        nav {
+            background-color: #C0C0C0; /* Light gray */
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #000080; /* Dark blue */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h2 {
+            color: #4B0082; /* Dark purple for headings */
+        }
+        .content {
+            background-color: white; /* White background for content */
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .donate-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4B0082; /* Dark purple */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .donate-button:hover {
+            background-color: #8A2BE2; /* Lighter purple on hover */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4B0082; /* Dark purple */
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray for even rows */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>5K Run In Memory</h1> <!-- Changed title to "5K Run In Memory" -->
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('teams') }}">Teams</a></li>
+            <li><a href="{{ url_for('participants') }}">Participants</a></li>
+            <li><a href="{{ url_for('location') }}">Location</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

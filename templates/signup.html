@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    .signup-form {
+        max-width: 500px;
+        margin: 0 auto;
+        font-size: 18px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9; /* Light background for the form */
+    }
+    .signup-form h2 {
+        text-align: center;
+        color: #4B0082; /* Dark purple */
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #4B0082; /* Dark purple */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .submit-button:hover {
+        background-color: #8A2BE2; /* Lighter purple on hover */
+    }
+    .hidden {
+        display: none;
+    }
+</style>
+
+<script>
+    function toggleOtherCancerType() {
+        const cancerTypeSelect = document.getElementById('cancer_type');
+        const otherCancerInput = document.getElementById('other_cancer_type');
+        otherCancerInput.classList.toggle('hidden', cancerTypeSelect.value !== 'Other');
+    }
+
+    function toggleOtherTeamName() {
+        const teamSelect = document.getElementById('team');
+        const otherTeamInput = document.getElementById('other_team_name');
+        otherTeamInput.classList.toggle('hidden', teamSelect.value !== 'Other');
+    }
+</script>
+
+<div class="signup-form">
+    <h2>Sign Up for Run in Memory</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="cancer_type">Cancer Type:</label>
+            <select id="cancer_type" name="cancer_type" onchange="toggleOtherCancerType()" required>
+                <option value="">Select Cancer Type</option>
+                {% for cancer in cancer_types %}
+                    <option value="{{ cancer }}">{{ cancer }}</option>
+                {% endfor %}
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="other_cancer_type" name="other_cancer_type" class="hidden" placeholder="Please specify">
+        </div>
+        <div class="form-group">
+            <label for="team">Team:</label>
+            <select id="team" name="team" onchange="toggleOtherTeamName()" required>
+                <option value="">Select Team</option>
+                {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="other_team_name" name="other_team_name" class="hidden" placeholder="Please specify">
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Sign Up" class="submit-button">
+        </div>
+    </form>
+</div>
+{% endblock %}

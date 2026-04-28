@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}5K Run in Memory - Home{% endblock %}
+
+{% block content %}
+    <div class="header-title">
+        <h1 style="color: white; font-size: 36px;">Join the Fight Against Cancer</h1> <!-- Increased title font size -->
+    </div>
+
+    <div class="main-content">
+        <div class="sidebar" style="width: 15%; padding: 20px;"> <!-- Skinnier sidebar -->
+            <div class="donation-info" style="padding: 15px; border: 1px solid #4B0082; border-radius: 5px; background-color: #ffffff;">
+                <h3 style="color: #4B0082; font-size: 20px;">Donate to Our Team</h3> <!-- Adjusted heading font size -->
+                <p style="font-size: 16px;">Your contributions will help support [Charity Name], which is dedicated to [brief description of the charity's mission].</p> <!-- Adjusted paragraph font size -->
+                <a href="https://www.gofundme.com/your-5k-event-page" class="donate-button" style="margin-top: 10px; display: block; text-align: center; font-size: 16px;">Donate Now</a> <!-- Adjusted button font size -->
+            </div>
+
+            <!-- We Run For Section -->
+            <div class="in-memory" style="margin-top: 20px; padding: 15px; border: 1px solid #4B0082; border-radius: 5px; background-color: #ffffff;">
+                <h3 style="color: #4B0082; font-size: 20px;">We Run For</h3>
+                <ul style="list-style-type: none; padding: 0; font-size: 16px;">
+                    <li>John Doe</li>
+                    <li>Jane Smith</li>
+                    <li>Michael Johnson</li>
+                    <li>Emily Davis</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="left-content" style="flex: 1; display: flex; flex-direction: column; padding: 30px;"> <!-- Increased padding -->
+            <div class="event-image">
+                <img src="{{ url_for('static', filename='5k_run_in_memory.jpg') }}" alt="5K Run in Memory Event Image" style="width: 100%; height: auto; max-height: 900px;"> <!-- Increased size -->
+            </div>
+            <p style="text-align: center; font-size: 28px; color: #4B0082; margin-top: 20px;">Join us in making a difference, one step at a time!</p> <!-- Increased font size -->
+            <a href="{{ url_for('signup') }}" class="donate-button" style="margin-top: 20px; font-size: 16px;">Join the Run</a> <!-- Adjusted button font size -->
+
+            <!-- Box for Joining a Team -->
+            <h3 style="margin-top: 30px; font-size: 20px;">Already have an account? Join an Existing Team</h3> <!-- Adjusted heading font size -->
+            <form action="{{ url_for('join_team') }}" method="POST">
+                <label for="team" style="font-size: 16px;">Select Team:</label> <!-- Adjusted label font size -->
+                <select name="team" id="team" required style="font-size: 16px; padding: 5px;"> <!-- Adjusted select box size -->
+                    <option value="" disabled selected>Select a team</option>
+                    {% for team in teams.keys() %}
+                    <option value="{{ team }}">{{ team }}</option>
+                    {% endfor %}
+                </select>
+
+                <div id="join-form" style="margin-top: 20px;">
+                    <input type="email" name="email" placeholder="Email" required style="font-size: 16px; padding: 5px;"> <!-- Adjusted input size -->
+                    <input type="password" name="password" placeholder="Password" required style="font-size: 16px; padding: 5px;"> <!-- Adjusted input size -->
+                    <input type="text" name="cancer_type" placeholder="Cancer Type" required style="font-size: 16px; padding: 5px;"> <!-- Adjusted input size -->
+                    <input type="date" name="date" required style="font-size: 16px; padding: 5px;"> <!-- Adjusted input size -->
+                    <input type="submit" value="Join" style="margin-top: 10px; font-size: 16px; padding: 5px;"> <!-- Adjusted button size -->
+                </div>
+            </form>
+        </div>
+
+        <div class="right-content" style="flex: 1; padding: 30px;"> <!-- Increased padding -->
+            <h3 style="font-size: 24px;">Recent Participants</h3> <!-- Increased heading font size -->
+            <div class="participants-list" style="max-height: 400px; overflow-y: auto; border: none; padding: 10px; border-radius: 5px;">
+                <table style="width: 100%; font-size: 18px;"> <!-- Increased table font size -->
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Team</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for participant in participants[:10] %} <!-- Show only the first 10 participants -->
+                        <tr>
+                            <td>{{ participant['name'] }}</td>
+                            <td><a href="{{ url_for('team', team_name=participant['team']) }}">{{ participant['team'] }}</a></td> <!-- Link to team page -->
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="location-info" style="margin-top: 20px; padding: 10px; border: none; border-radius: 5px;">
+                <h3 style="font-size: 24px;">Event Location</h3> <!-- Increased heading font size -->
+                <p style="font-size: 18px;">Our 5K event will be held at [Your Location Here].</p> <!-- Increased paragraph font size -->
+                <p style="font-size: 18px;">Date: [Event Date]</p> <!-- Increased paragraph font size -->
+                <p style="font-size: 18px;">Time: [Event Time]</p> <!-- Increased paragraph font size -->
+                <a href="{{ url_for('location') }}" class="donate-button" style="font-size: 16px;">More Details</a> <!-- Adjusted button font size -->
+            </div>
+
+            <!-- Social Media Links Section with Icons -->
+            <div class="social-media" style="text-align: center; margin-top: 20px;">
+                <h3 class="follow-us-title" style="font-size: 24px;">Follow Us</h3> <!-- Increased heading font size -->
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="display: inline; margin: 0 10px;"> <!-- Smaller margin -->
+                        <a href="https://twitter.com/yourprofile" target="_blank">
+                            <img src="{{ url_for('static', filename='twitter.png') }}" alt="Twitter" class="social-icon" style="width: 80px; height: auto;"> <!-- Smaller size -->
+                        </a>
+                    </li>
+                    <li style="display: inline; margin: 0 10px;"> <!-- Smaller margin -->
+                        <a href="https://instagram.com/yourprofile" target="_blank">
+                            <img src="{{ url_for('static', filename='instagram.png') }}" alt="Instagram" class="social-icon" style="width: 80px; height: auto;"> <!-- Smaller size -->
+                        </a>
+                    </li>
+                    <li style="display: inline; margin: 0 10px;"> <!-- Smaller margin -->
+                        <a href="https://facebook.com/yourprofile" target="_blank">
+                            <img src="{{ url_for('static', filename='facebook.png') }}" alt="Facebook" class="social-icon" style="width: 80px; height: auto;"> <!-- Smaller size -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .header-title {
+            background-color: #4B0082; /* Dark purple */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px; /* Space between header and main content */
+        }
+
+        .main-content {
+            display: flex;
+            margin: 0 auto; /* Center the content */
+            max-width: 1600px; /* Increased maximum width for the content */
+            padding: 40px; /* Increased padding for spacing */
+            border-radius: 10px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background for the main content */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            width: 95%; /* Make it wider to fill the screen */
+        }
+
+        .sidebar {
+            width: 15%; /* Skinnier sidebar */
+            padding: 20px; /* Padding for the sidebar */
+            background-color: #ffffff; /* White background for the sidebar */
+            border: 1px solid #4B0082; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            margin-right: 20px; /* Space between sidebar and left content */
+        }
+
+        .left-content {
+            flex: 1; /* Left side for the image and join team form */
+            display: flex;
+            flex-direction: column;
+            padding: 30px; /* Increased padding */
+        }
+
+        .right-content {
+            flex: 1; /* Right side for the details */
+            padding: 30px; /* Increased padding */
+        }
+
+        .participants-list {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #4B0082; /* Dark purple for headings */
+        }
+
+        p {
+            color: #000000; /* Black for paragraph text */
+        }
+    </style>
+{% endblock %}

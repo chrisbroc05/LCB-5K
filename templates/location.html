@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Location{% endblock %}
+
+{% block content %}
+<style>
+    .location-info {
+        max-width: 600px;
+        margin: 0 auto;
+        font-size: 18px;
+    }
+    .location-info h2 {
+        text-align: center;
+        color: #4B0082; /* Dark purple */
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+    .location-info h3 {
+        color: #4B0082; /* Dark purple */
+        font-size: 24px;
+        margin-top: 20px;
+    }
+    .location-info p {
+        margin-bottom: 15px;
+        color: #000000; /* Black for paragraph text */
+    }
+</style>
+
+<div class="location-info">
+    <h2>Run in Memory Event Location</h2>
+    <p>Our 5K event will be held at [Your Location Here]. The event will start at [Time] on [Date].</p>
+    <h3>Directions</h3>
+    <p>[Add directions or embed a map here]</p>
+    <h3>Parking</h3>
+    <p>[Add parking information here]</p>
+</div>
+{% endblock %}

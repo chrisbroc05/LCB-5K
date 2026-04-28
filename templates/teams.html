@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Teams{% endblock %}
+
+{% block content %}
+<h2>Teams</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+<div style="display: flex; justify-content: space-between;">
+    <!-- Box for Existing Teams -->
+    <div style="width: 45%;">
+        <h3>Existing Teams</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Number of Members</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team, count in teams.items() %}
+                <tr>
+                    <td><a href="{{ url_for('team', team_name=team) }}">{{ team }}</a></td>
+                    <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Box for Joining a Team -->
+    <div style="width: 45%;">
+        <h3>Already have an account? Join an Existing Team</h3>
+        <form action="{{ url_for('join_team') }}" method="POST">
+            <label for="team">Select Team:</label>
+            <select name="team" id="team" required>
+                <option value="" disabled selected>Select a team</option>
+                {% for team in teams.keys() %}
+                <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select>
+
+            <div id="join-form" style="margin-top: 20px;">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="cancer_type" placeholder="Cancer Type" required>
+                <input type="date" name="date" required>
+                <input type="submit" value="Join" style="margin-top: 10px;">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Optional: You can use JavaScript to show/hide the join form based on team selection
+    document.getElementById('team').addEventListener('change', function() {
+        const joinForm = document.getElementById('join-form');
+        if (this.value) {
+            joinForm.style.display = 'block'; // Show the form when a team is selected
+        } else {
+            joinForm.style.display = 'none'; // Hide the form if no team is selected
+        }
+    });
+</script>
+
+{% endblock %}
