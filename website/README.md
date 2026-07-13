@@ -67,3 +67,19 @@ Create a new HTML file following the same pattern as `signup.html`:
 - Add link in `components/nav.html`
 
 Planned: Memory Wall, Results, Gallery, Volunteer, Course Map
+
+## Hidden Payment Flow (Post-Registration)
+
+After participants complete the Google Form, send them to:
+
+**`/payments/`** (e.g. `https://yourdomain.com/payments/`)
+
+Flow:
+1. **Step 1** — Select 1–6 adults (`payments/index.html`)
+2. **Step 2** — Choose registration only or add a donation tier (`payments/checkout.html?adults=3`)
+
+This section is **not in the main navigation** (`noindex` for search engines). Share the link in your Google Form confirmation message.
+
+### Adding Stripe Links
+
+Edit **`js/payments-config.js`** if registration payment links change. Each adult count (1–6) has 13 options: entry fee only, plus optional donations of $10, $25, $35, $50, $75, $100, $150, $200, $300, $400, $500, and $1,000.

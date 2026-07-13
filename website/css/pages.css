@@ -129,3 +129,75 @@
 .faq-answer p {
   font-size: 0.9375rem;
 }
+
+/* ---- Donation tiers (Donate page) ---- */
+.donation-tiers-section {
+  max-width: 640px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+.donation-tiers-section h2 {
+  color: var(--purple-dark);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+.donation-tiers-section > p {
+  text-align: center;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+  color: var(--gray-700);
+}
+
+.donation-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-sm);
+}
+
+.donation-tier-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border: 2px solid var(--purple-light);
+  border-radius: var(--radius-sm);
+  color: var(--purple-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+  min-height: 56px;
+}
+
+.donation-tier-btn:hover {
+  transform: translateY(-2px);
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--white);
+}
+
+.donation-tier-btn.featured {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: var(--white);
+}
+
+.donation-tier-btn.featured:hover {
+  background: #d44f96;
+  border-color: #d44f96;
+}
+
+.donate-other {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--gray-200);
+}
+
+.donate-other .section-header h2 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}

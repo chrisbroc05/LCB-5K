@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Choose Payment Option | LCB 5K 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/payments.css">
+  <link rel="icon" href="../assets/images/lcb-logo.png" type="image/png">
+</head>
+<body>
+
+  <div class="payment-shell">
+    <header class="payment-header">
+      <a href="../index.html" aria-label="LCB 5K Home">
+        <img src="../assets/images/lcb-logo.png" alt="LCB 5K logo" width="56" height="56">
+      </a>
+    </header>
+
+    <main class="payment-main" id="main">
+      <div class="payment-card">
+        <span class="payment-step-label">Step 2 of 2</span>
+        <h1 id="checkout-title">Choose Your Payment</h1>
+        <p id="checkout-subtitle" class="payment-total"></p>
+
+        <div id="pricing-disclaimer" class="pricing-disclaimer" role="note"></div>
+
+        <p id="checkout-error" class="payment-error" hidden></p>
+
+        <div id="payment-options" class="payment-options-grid" role="list"></div>
+
+        <a href="index.html" class="payment-back">&larr; Change number of adults</a>
+      </div>
+    </main>
+
+    <footer class="payment-footer">
+      <p>Questions? Email <a href="mailto:chrisbroc05@gmail.com">chrisbroc05@gmail.com</a></p>
+    </footer>
+  </div>
+
+  <div id="payment-confirm-modal" class="payment-modal" hidden aria-hidden="true">
+    <div class="payment-modal-backdrop" data-dismiss="modal" tabindex="-1"></div>
+    <div class="payment-modal-dialog" role="dialog" aria-labelledby="payment-confirm-title" aria-modal="true">
+      <h2 id="payment-confirm-title">Confirm your payment</h2>
+
+      <dl class="payment-confirm-summary">
+        <div class="payment-confirm-row">
+          <dt>Registration</dt>
+          <dd id="confirm-adults"></dd>
+        </div>
+        <div class="payment-confirm-row">
+          <dt>Entry fee</dt>
+          <dd id="confirm-entry"></dd>
+        </div>
+        <div class="payment-confirm-row" id="confirm-donation-row">
+          <dt>Donation</dt>
+          <dd id="confirm-donation"></dd>
+        </div>
+        <div class="payment-confirm-row payment-confirm-total">
+          <dt>Total due</dt>
+          <dd id="confirm-total"></dd>
+        </div>
+      </dl>
+
+      <p class="payment-modal-note">You'll continue to Stripe to pay securely.</p>
+
+      <div class="payment-modal-actions">
+        <button type="button" class="payment-modal-cancel" data-dismiss="modal">Go back</button>
+        <a id="confirm-pay-link" class="payment-modal-confirm" href="#" target="_blank" rel="noopener noreferrer">
+          Continue to payment
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/payments-config.js"></script>
+  <script src="../js/payments-pricing.js"></script>
+  <script src="../js/payments-checkout.js"></script>
+</body>
+</html>

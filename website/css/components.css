@@ -141,6 +141,14 @@
   border-radius: 2px;
 }
 
+.nav-links a.btn {
+  color: var(--white);
+}
+
+.nav-links a.btn:hover {
+  color: var(--white);
+}
+
 .nav-toggle {
   display: none;
   background: none;
