@@ -45,8 +45,8 @@ function initMobileNav() {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await Promise.all([
-    loadComponent("site-nav", "components/nav.html"),
-    loadComponent("site-footer", "components/footer.html"),
+    loadComponent("site-nav", "/components/nav.html"),
+    loadComponent("site-footer", "/components/footer.html"),
   ]);
 
   setActiveNavLink();

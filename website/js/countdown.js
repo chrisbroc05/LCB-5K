@@ -34,7 +34,13 @@ function updateCountdown() {
   secondsEl.textContent = String(seconds).padStart(2, "0");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function startCountdown() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startCountdown);
+} else {
+  startCountdown();
+}

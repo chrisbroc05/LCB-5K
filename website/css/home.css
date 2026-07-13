@@ -23,6 +23,17 @@
   height: clamp(100px, 18vw, 160px);
   margin-inline: auto;
   margin-bottom: var(--space-md);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.mission-visual img {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .hero h1 {

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   for (let adults = 1; adults <= 6; adults += 1) {
     const btn = document.createElement("a");
-    btn.href = `checkout.html?adults=${adults}`;
+    btn.href = `/payments/checkout.html?adults=${adults}`;
     btn.className = "adult-count-btn";
     btn.innerHTML = `
       <span class="adult-count-number">${adults}</span>
