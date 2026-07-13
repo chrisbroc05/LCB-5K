@@ -1,0 +1,131 @@
+/*
+  pages.css — Styles for Signup, Donate, and FAQ pages.
+*/
+
+.page-hero {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
+}
+
+.page-hero h1 {
+  margin-bottom: var(--space-sm);
+}
+
+.page-hero p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-inline: auto;
+  font-size: 1.125rem;
+}
+
+.page-content {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.page-card {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.page-card h2 {
+  color: var(--purple-dark);
+  margin-bottom: var(--space-md);
+}
+
+.page-card p {
+  margin-inline: auto;
+  margin-bottom: var(--space-md);
+}
+
+.page-card .btn {
+  font-size: 1.125rem;
+  padding: 1rem 2.5rem;
+}
+
+.donate-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.donate-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.donate-card h3 {
+  color: var(--purple-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.donate-card p {
+  margin-inline: auto;
+  margin-bottom: var(--space-md);
+  font-size: 0.9375rem;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.faq-item {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--purple-dark);
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.faq-question:hover {
+  background: var(--purple-light);
+}
+
+.faq-icon {
+  font-size: 1.5rem;
+  color: var(--pink);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  margin-left: var(--space-sm);
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 var(--space-md);
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.faq-answer p {
+  font-size: 0.9375rem;
+}
