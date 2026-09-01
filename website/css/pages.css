@@ -318,3 +318,127 @@
   line-height: 1.6;
   margin-top: 0.5rem;
 }
+
+/* ---- Sign Up two-column layout ---- */
+.signup-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  align-items: start;
+}
+
+.signup-main,
+.signup-sidebar {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.signup-registration-card {
+  text-align: left;
+  padding: var(--space-xl);
+  max-width: 100%;
+}
+
+.signup-registration-card h2 {
+  color: var(--purple-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.signup-registration-card h3 {
+  color: var(--purple-dark);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-sm);
+}
+
+.signup-register-block {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+.signup-register-block p {
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-md);
+}
+
+.signup-adult-select {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-200);
+}
+
+.signup-registration-card .payment-total--prominent {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.signup-payment-actions {
+  text-align: center;
+}
+
+.signup-continue-btn {
+  width: 100%;
+  max-width: 320px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.signup-continue-btn.is-disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.signup-payment-hint {
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+  margin-top: var(--space-sm);
+}
+
+.signup-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-self: start;
+}
+
+.signup-sidebar-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin: 0;
+}
+
+.signup-sidebar .support-path-card {
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .signup-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .signup-sidebar-label {
+    margin-top: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-registration-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .signup-sidebar .support-path-card,
+  .signup-sidebar .payment-fr-section--sidebar {
+    padding: var(--space-md);
+  }
+
+  .signup-registration-card .payment-total--prominent {
+    padding: var(--space-md);
+  }
+}

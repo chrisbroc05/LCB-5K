@@ -94,6 +94,19 @@
   min-height: 88px;
 }
 
+button.adult-count-btn {
+  cursor: pointer;
+  width: 100%;
+}
+
+.adult-count-btn.is-selected,
+.adult-count-btn.is-selected:hover {
+  border-color: var(--purple);
+  background: var(--white);
+  color: var(--purple);
+  transform: none;
+}
+
 .adult-count-btn:hover {
   transform: translateY(-3px);
   border-color: var(--purple);
@@ -162,6 +175,34 @@
   font-weight: 800;
   color: var(--purple-dark);
   line-height: 1.1;
+}
+
+.payment-total--compact {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.pricing-disclaimer--compact {
+  margin-bottom: var(--space-md);
+}
+
+.payment-fr-section--sidebar {
+  padding: var(--space-md);
+}
+
+.payment-fr-section--sidebar .payment-fr-policy,
+.payment-fr-section--sidebar .payment-section-intro,
+.payment-fr-section--sidebar .payment-fr-instructions {
+  font-size: 0.875rem;
+}
+
+.payment-fr-section--sidebar .payment-check-info {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+}
+
+.payment-card .payment-adult-select {
+  margin-top: var(--space-md);
 }
 
 .pricing-disclaimer {
@@ -413,6 +454,10 @@ body.payment-modal-open {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   text-align: left;
+}
+
+.payment-event-info:has(+ .payment-total--compact) {
+  margin-bottom: var(--space-sm);
 }
 
 .payment-event-info {
