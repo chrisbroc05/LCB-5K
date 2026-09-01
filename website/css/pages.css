@@ -364,10 +364,20 @@
   margin-bottom: var(--space-md);
 }
 
+.signup-register-cta {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
 .signup-adult-select {
   margin-top: var(--space-lg);
   padding-top: var(--space-lg);
   border-top: 1px solid var(--gray-200);
+  text-align: left;
+}
+
+.signup-adult-select .adult-count-grid {
+  margin-inline: 0;
 }
 
 .signup-registration-card .payment-total--prominent {
