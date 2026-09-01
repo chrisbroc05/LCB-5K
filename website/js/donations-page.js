@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const a = document.createElement("a");
     a.href = tier.url;
     a.className = "donation-tier-btn" + (index === 2 ? " featured" : "");
-    a.textContent = `$${tier.amount.toLocaleString()} Donation`;
+    a.textContent = `$${tier.amount.toLocaleString()} Support`;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
     container.appendChild(a);

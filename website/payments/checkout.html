@@ -25,18 +25,70 @@
     </header>
 
     <main class="payment-main" id="main">
-      <div class="payment-card">
+      <div class="payment-card payment-card--wide">
         <span class="payment-step-label">Step 2 of 2</span>
-        <h1 id="checkout-title">Choose Your Payment</h1>
-        <p id="checkout-subtitle" class="payment-total"></p>
+        <h1 id="checkout-title">Complete Registration &amp; Support</h1>
 
-        <div id="pricing-disclaimer" class="pricing-disclaimer" role="note"></div>
+        <section class="payment-event-info" aria-label="Event details">
+          <h2 class="payment-section-title">LCB 5K Registration</h2>
+          <dl class="payment-event-details">
+            <div>
+              <dt>Registration fee</dt>
+              <dd>$35 per participant</dd>
+            </div>
+            <div>
+              <dt>Event date</dt>
+              <dd>October 3, 2026</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>Mallard Lake Forest Preserve, Hanover Park, IL</dd>
+            </div>
+            <div>
+              <dt>Benefiting</dt>
+              <dd>Family Reach</dd>
+            </div>
+          </dl>
+          <p class="payment-fee-note">The registration fee is a payment for participating in the event and is not a tax-deductible charitable donation.</p>
+        </section>
 
-        <p id="checkout-error" class="payment-error" hidden></p>
+        <section class="payment-section" aria-labelledby="support-lcb-heading">
+          <p id="checkout-subtitle" class="payment-total"></p>
+          <div id="pricing-disclaimer" class="pricing-disclaimer" role="note"></div>
 
-        <div id="payment-options" class="payment-options-grid" role="list"></div>
+          <h2 id="support-lcb-heading" class="payment-section-title">Support the LCB 5K</h2>
+          <p class="payment-section-intro">Want to help us make an even bigger impact? You can make an additional contribution to support the LCB 5K and help cover the costs of putting on the event and maximize the impact we can make for families facing cancer.</p>
 
-        <a href="/payments/" class="payment-back">&larr; Change number of adults</a>
+          <p id="checkout-error" class="payment-error" hidden></p>
+
+          <div id="payment-options" class="payment-options-grid" role="list"></div>
+
+          <p class="payment-disclaimer">Contributions made through the LCB 5K website support the LCB 5K and are not tax-deductible charitable donations. Following the event, LCB will make a lump-sum donation to Family Reach.</p>
+
+          <a href="/payments/" class="payment-back">&larr; Change number of adults</a>
+        </section>
+
+        <div class="payment-path-divider" role="separator" aria-label="Alternative giving option">
+          <span>or</span>
+        </div>
+
+        <section class="payment-fr-section" aria-labelledby="family-reach-heading">
+          <h2 id="family-reach-heading" class="payment-section-title">Donate Directly to Family Reach</h2>
+          <p class="payment-section-intro">Want to make a tax-deductible charitable donation? You can donate directly to Family Reach through their website.</p>
+          <p class="payment-fr-instructions">To make sure your donation is properly credited to the LCB 5K, please select <strong>"In Honor Of"</strong> and enter <strong>"LCB 5K"</strong> when making your donation.</p>
+          <a href="https://familyreach.org/donate/" class="payment-fr-btn" target="_blank" rel="noopener noreferrer">Donate Directly to Family Reach</a>
+          <p class="payment-fr-policy">Donations made directly through Family Reach are handled by Family Reach, a 501(c)(3) nonprofit organization, and are subject to Family Reach's charitable donation and tax-receipt policies.</p>
+
+          <div class="payment-check-info">
+            <h3>Prefer to Donate by Check?</h3>
+            <p>Checks can be made payable to <strong>Family Reach</strong>. Please note <strong>LCB 5K</strong> on the check so Family Reach can properly allocate the funds to the LCB 5K.</p>
+            <address>
+              Family Reach<br>
+              142 Berkeley St, Suite 310<br>
+              Boston, MA 02116
+            </address>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -60,7 +112,7 @@
           <dd id="confirm-entry"></dd>
         </div>
         <div class="payment-confirm-row" id="confirm-donation-row">
-          <dt>Donation</dt>
+          <dt>Additional support</dt>
           <dd id="confirm-donation"></dd>
         </div>
         <div class="payment-confirm-row payment-confirm-total">
@@ -69,7 +121,7 @@
         </div>
       </dl>
 
-      <p class="payment-modal-note">You'll continue to Stripe to pay securely.</p>
+      <p class="payment-modal-note">You'll continue to Stripe to pay securely. This payment supports the LCB 5K and is not a tax-deductible charitable donation.</p>
 
       <div class="payment-modal-actions">
         <button type="button" class="payment-modal-cancel" data-dismiss="modal">Go back</button>

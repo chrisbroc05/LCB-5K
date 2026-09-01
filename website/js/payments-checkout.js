@@ -10,7 +10,7 @@ function formatOptionLabel(donation) {
   if (donation === 0) {
     return "Registration only";
   }
-  return `Add ${formatMoney(donation)} donation`;
+  return `Registration + ${formatMoney(donation)} support`;
 }
 
 function getConfirmModal() {
@@ -120,7 +120,7 @@ function renderCheckoutPage() {
   if (disclaimerEl) {
     const fee = formatMoney(config.entryFeePerAdult);
     disclaimerEl.textContent =
-      `${adults} ${adults === 1 ? "adult" : "adults"} at ${fee} each. Donations are optional and added on top.`;
+      `${adults} ${adults === 1 ? "adult" : "adults"} at ${fee} each. Additional support is optional and added on top of the registration fee.`;
   }
 
   optionsEl.innerHTML = "";
