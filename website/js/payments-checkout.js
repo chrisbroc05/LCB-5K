@@ -114,7 +114,9 @@ function renderCheckoutPage() {
 
   titleEl.textContent = formatAdultLabel(adults);
   if (subtitleEl) {
-    subtitleEl.textContent = `Registration total: ${formatMoney(entryTotal)}`;
+    subtitleEl.innerHTML =
+      `<span class="payment-total-label">Registration Total:</span> ` +
+      `<span class="payment-total-amount">${formatMoney(entryTotal)}</span>`;
   }
 
   if (disclaimerEl) {

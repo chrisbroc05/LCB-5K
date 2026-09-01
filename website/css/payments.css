@@ -123,6 +123,47 @@
   margin-bottom: var(--space-lg);
 }
 
+.payment-note--center {
+  text-align: center;
+}
+
+.payment-adult-select {
+  text-align: center;
+}
+
+.payment-section-title--center {
+  text-align: center;
+}
+
+.payment-total--prominent {
+  display: block;
+  text-align: center;
+  margin: var(--space-md) auto var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--purple-light);
+  border-radius: var(--radius-md);
+  max-width: 420px;
+  width: 100%;
+}
+
+.payment-total-label {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--gray-700);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.payment-total-amount {
+  display: block;
+  font-size: clamp(2.25rem, 7vw, 3rem);
+  font-weight: 800;
+  color: var(--purple-dark);
+  line-height: 1.1;
+}
+
 .pricing-disclaimer {
   background: var(--purple-light);
   border-radius: var(--radius-sm);
