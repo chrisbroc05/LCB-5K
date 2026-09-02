@@ -387,6 +387,9 @@
 
 .signup-payment-actions {
   text-align: center;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-200);
 }
 
 .signup-continue-btn {
