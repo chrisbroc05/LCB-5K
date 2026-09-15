@@ -65,6 +65,10 @@ class RaffleItem:
     prize: str
     logo_hints: Sequence[str] = field(default_factory=list)
     location: str = ""
+    sample_note: str = ""
+    sample_detail: str = ""
+    discount_code: str = ""
+    discount_note: str = ""
 
 
 STANDARD_RAFFLES = [
@@ -154,6 +158,16 @@ STANDARD_RAFFLES = [
         ["WildfireLogo.png"],
         location="Located in Schaumburg",
     ),
+    RaffleItem(
+        "raffle-14-blumaka",
+        "Blumaka",
+        "Free pair of insoles",
+        ["BlumakaLogo.png"],
+        sample_note="Try a sample!",
+        sample_detail="Physical sample product on display here",
+        discount_code="LCB20",
+        discount_note="Use on their website for a discounted purchase.",
+    ),
 ]
 
 FEATURED_RAFFLE = RaffleItem(
@@ -179,6 +193,7 @@ LOGO_TARGET_INNER: dict[str, tuple[int, int]] = {
     "raffle-04-goebberts-farm": (827, 400),  # wide logo — fill width, taller height
     "raffle-09-schaumburg-boomers": (428, 428),
     "raffle-13-wildfire": (827, 400),  # wide logo — fill width, taller height
+    "raffle-14-blumaka": (827, 400),
     "featured-bears-tickets": (456, 450),  # max fit in featured card logo band
 }
 
@@ -198,6 +213,28 @@ def text_width(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFon
     return draw.textbbox((0, 0), text, font=font)[2]
 
 
+def wrap_text(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    max_width: int,
+) -> list[str]:
+    words = text.split()
+    lines: list[str] = []
+    current = ""
+    for word in words:
+        test = f"{current} {word}".strip()
+        if text_width(draw, test, font) > max_width:
+            if current:
+                lines.append(current)
+            current = word
+        else:
+            current = test
+    if current:
+        lines.append(current)
+    return lines or [text]
+
+
 def draw_text_centered(
     draw: ImageDraw.ImageDraw,
     text: str,
@@ -208,19 +245,7 @@ def draw_text_centered(
     max_width: int | None = None,
     line_gap: int = 20,
 ) -> int:
-    words = text.split()
-    lines: list[str] = []
-    current = ""
-    for word in words:
-        test = f"{current} {word}".strip()
-        if max_width and text_width(draw, test, font) > max_width:
-            if current:
-                lines.append(current)
-            current = word
-        else:
-            current = test
-    if current:
-        lines.append(current)
+    lines = wrap_text(draw, text, font, max_width) if max_width else [text]
 
     for line in lines:
         tw = text_width(draw, line, font)
@@ -399,6 +424,20 @@ def drop_label_height(featured: bool = False) -> int:
     return probe.textbbox((0, 0), "DROP YOUR TICKETS HERE", font=font)[3]
 
 
+def raffle_footer_height(item: RaffleItem, featured: bool = False) -> int:
+    """Total vertical space reserved above the bottom padding for drop + extras."""
+    drop_lh = drop_label_height(featured)
+    h = drop_lh + 36
+    if item.discount_code:
+        h += 82
+    return h
+
+
+def sample_note_height() -> int:
+    """Space reserved beneath the logo for a centered sample callout."""
+    return 52
+
+
 def draw_ticket_drop_label(
     draw: ImageDraw.ImageDraw,
     width: int,
@@ -411,6 +450,80 @@ def draw_ticket_drop_label(
     y = height - pad - lh - 6
     draw_text_centered(draw, "DROP YOUR TICKETS HERE", label_font, y, width, THEME["text"])
     return y
+
+
+def draw_text_in_box(
+    draw: ImageDraw.ImageDraw,
+    lines: Sequence[str],
+    fonts: Sequence[ImageFont.FreeTypeFont],
+    box: tuple[int, int, int, int],
+    colors: Sequence[tuple[int, int, int]],
+    *,
+    line_gap: int = 6,
+):
+    x0, y0, x1, y1 = box
+    cx = (x0 + x1) // 2
+    max_w = x1 - x0 - 16
+    total_h = 0
+    line_metrics: list[tuple[str, ImageFont.FreeTypeFont, tuple[int, int, int], int]] = []
+    for text, font, color in zip(lines, fonts, colors):
+        if not text:
+            continue
+        wrapped = wrap_text(draw, text, font, max_w) if text_width(draw, text, font) > max_w else [text]
+        for segment in wrapped:
+            bbox = draw.textbbox((0, 0), segment, font=font)
+            seg_h = bbox[3] - bbox[1]
+            line_metrics.append((segment, font, color, seg_h))
+            total_h += seg_h + line_gap
+    if line_metrics:
+        total_h -= line_gap
+    y = y0 + max(0, (y1 - y0 - total_h) // 2)
+    for segment, font, color, seg_h in line_metrics:
+        tw = text_width(draw, segment, font)
+        draw.text((cx - tw // 2, y), segment, font=font, fill=color)
+        y += seg_h + line_gap
+
+
+def draw_raffle_footer(
+    draw: ImageDraw.ImageDraw,
+    width: int,
+    height: int,
+    item: RaffleItem,
+    featured: bool = False,
+) -> None:
+    pad = THEME["padding"]
+    drop_font = load_font("bold", 34 if featured else 30)
+    drop_text = "DROP YOUR TICKETS HERE"
+    drop_lh = drop_label_height(featured)
+    drop_y = height - pad - 6 - drop_lh
+    content_bottom = drop_y - 20
+
+    if item.discount_code:
+        code_font = load_font("bold", 38)
+        note_font = load_font("regular", 26)
+        note = item.discount_note or "Use on their website for a discounted purchase."
+        note_lines = wrap_text(draw, note, note_font, width - 2 * pad)
+        note_lh = draw.textbbox((0, 0), "Ag", font=note_font)[3]
+        note_block_h = len(note_lines) * (note_lh + 8) - 8
+        code_lh = draw.textbbox((0, 0), "Ag", font=code_font)[3]
+        discount_block_h = code_lh + 8 + note_block_h
+        discount_y = content_bottom - discount_block_h
+        draw_text_centered(
+            draw,
+            f"Use code {item.discount_code}",
+            code_font,
+            discount_y,
+            width,
+            THEME["border"],
+        )
+        note_y = discount_y + code_lh + 8
+        for line in note_lines:
+            tw = text_width(draw, line, note_font)
+            draw.text(((width - tw) // 2, note_y), line, font=note_font, fill=THEME["text_muted"])
+            note_y += note_lh + 8
+
+    tw = text_width(draw, drop_text, drop_font)
+    draw.text(((width - tw) // 2, drop_y), drop_text, font=drop_font, fill=THEME["text"])
 
 
 def plan_energy_basket_layout(logo_paths: list[str], area_w: int, area_h: int) -> dict:
@@ -645,10 +758,11 @@ def build_raffle_card(item: RaffleItem, featured: bool = False) -> Image.Image:
     if not energy_basket and not dual and logo_paths:
         logo_paths = logo_paths[:1]
 
-    drop_h = drop_label_height(featured)
+    footer_h = raffle_footer_height(item, featured)
+    sample_h = sample_note_height() if item.sample_note else 0
     logo_area_top = y + 20
-    logo_area_bottom = height - pad - drop_h - 24
-    logo_area_h = max(200, logo_area_bottom - logo_area_top)
+    logo_area_bottom = height - pad - footer_h
+    logo_area_h = max(200, logo_area_bottom - logo_area_top - sample_h)
     logo_area_w = width - 2 * pad
     logo_scale = LOGO_SCALE.get(item.slug, 1.0)
     target_inner = LOGO_TARGET_INNER.get(item.slug)
@@ -663,8 +777,21 @@ def build_raffle_card(item: RaffleItem, featured: bool = False) -> Image.Image:
         scale=logo_scale,
         target_inner=target_inner,
     )
-    draw_logos_section(img, draw, logo_paths, item.donor, cx, logo_area_top, layout)
-    draw_ticket_drop_label(draw, width, height, featured=featured)
+    logo_bottom = draw_logos_section(img, draw, logo_paths, item.donor, cx, logo_area_top, layout)
+    if item.sample_note:
+        sample_y = logo_bottom + 14
+        draw_text_centered(
+            draw,
+            item.sample_note,
+            load_font("bold", 30),
+            sample_y,
+            width,
+            THEME["border"],
+        )
+    if item.sample_note or item.discount_code:
+        draw_raffle_footer(draw, width, height, item, featured=featured)
+    else:
+        draw_ticket_drop_label(draw, width, height, featured=featured)
     draw_border(draw, width, height, featured=featured)
     return img
 
