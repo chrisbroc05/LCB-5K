@@ -867,16 +867,6 @@ def build_sponsor_graphic() -> Image.Image:
         rows = max(1, (len(sponsors) + cols - 1) // cols)
         y = row_start + rows * (card_h + 28) + 40
 
-    note_y = height - pad - 30
-    draw_text_centered(
-        draw,
-        "Additional sponsors may be added to each tier.",
-        load_font("regular", 22),
-        note_y,
-        width,
-        THEME["text_muted"],
-    )
-
     draw_border(draw, width, height, featured=False)
     return img
 
