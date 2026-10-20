@@ -383,6 +383,34 @@
   color: var(--gray-700);
 }
 
+.winners-by-year {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-top: var(--space-lg);
+}
+
+.winners-year {
+  padding: var(--space-lg);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.winners-year-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--purple-dark);
+  text-align: center;
+  margin: 0 0 var(--space-md);
+  letter-spacing: 0.02em;
+}
+
+.winners-year .podium {
+  margin-top: var(--space-md);
+}
+
 /* ---- Quotes ---- */
 .quotes {
   background: var(--white);
