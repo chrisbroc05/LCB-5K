@@ -56,7 +56,7 @@ A `render.yaml` is included for blueprint-based deployment.
 - **Registration link**: Replace placeholder in `signup.html`
 - **Donation links**: Replace Stripe placeholders in `donate.html`
 - **Sponsor logos**: Replace `.sponsor-placeholder` divs in `index.html` with `<img>` tags
-- **Impact stats**: Update `#impact` totals (`data-count`), year breakdown lists, and `generate_impact_recap_graphic_2026.py` if numbers change
+- **Impact stats**: Update `#impact` stat cards (`data-count` for raised, participants, sponsors)
 - **Winners**: Add a new `.winners-year` block in `index.html` each year (copy the latest year’s `<article>`, change the year heading and podium names)
 
 ## Future Pages (easy to add)
